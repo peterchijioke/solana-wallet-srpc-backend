@@ -13,7 +13,6 @@ interface IRequest extends Request{
 }
 @Controller({ path: 'user', version: '1' })
 export class UserController {
-
   constructor(readonly userService:UsersService){}
   @UseGuards(AuthGuard)
   @Put(':id')
