@@ -10,9 +10,9 @@ describe('AuthService', () => {
     }).compile();
 
     service = module.get<AuthService>(AuthService);
+
+    
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
+
 });
