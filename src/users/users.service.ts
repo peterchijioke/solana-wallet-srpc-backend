@@ -16,6 +16,39 @@ export class UsersService {
   }
 
 
+  async getUser(userId:string){
+    try {
+       const user = await this.userRepository.findOne({
+        where: {
+          id: userId,
+        },
+      });
+const {password,...rest}=user
+
+       return {
+        statusCode: HttpStatus.OK,
+        message: 'User updated successfully',
+        data: rest,
+      };
+
+
+    } 
+
+
+      catch (error) {
+      throw new HttpException(
+        {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: 'Failed to update user',
+          error: error.message,
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+
+    
+  }
+
     async update(updateUserDto: UpdateUserDto, userId: string): Promise<any> {
     try {
       const user = await this.userRepository.findOne({
