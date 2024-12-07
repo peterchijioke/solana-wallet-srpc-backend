@@ -22,7 +22,7 @@ export class UserController {
   }
 
   @UseGuards(AuthGuard)
-  @Get()
+  @Get('/')
   async getUser(@Req() req:IRequest) {
      const userId = req.user.id; 
     return this.userService.getUser(userId);
