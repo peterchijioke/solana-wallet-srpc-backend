@@ -67,12 +67,10 @@ const {password,...rest}=user
         );
       }
 
-      // Hash the new password if provided
       if (updateUserDto.password) {
         updateUserDto.password = await argon.hash(updateUserDto.password);
       }
 
-      // Update user data
       Object.assign(user, updateUserDto);
 
       // Save the updated user
