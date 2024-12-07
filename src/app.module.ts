@@ -5,7 +5,6 @@ import { AuthService } from './auth/auth.service';
 import { UsersService } from './users/users.service';
 import { AuthController } from './auth/auth.controller';
 import { DatabaseModule } from './database/database.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserController } from './users/users.controller';
 
 @Module({
