@@ -1,0 +1,27 @@
+
+import * as dotenv from 'dotenv'
+
+dotenv.config()
+const {
+DB_TYPE,
+DB_HOST,
+DB_USERNAME,
+DB_PASSWORD,EXPIRES_IN,
+DB_PORT,
+DB_NAME,
+PORT,
+SERVER_ADDRESS,
+JWT_SECRET_KEY,
+}=process.env
+export const Config={
+DB_TYPE,
+DB_HOST,
+DB_USERNAME,
+DB_PASSWORD,
+DB_PORT,
+DB_NAME,
+PORT,
+SERVER_ADDRESS,
+JWT_SECRET_KEY,
+EXPIRES_IN
+}

@@ -1,13 +1,29 @@
-import { Controller, Post, Req } from '@nestjs/common';
+import { Body, Controller, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 import { AuthService } from './auth.service';
+import { CreateUserDto } from 'src/dto/create-user.dto';
+import { UpdateUserDto } from 'src/dto/update-user.dto';
+import { AuthGuard } from './auth.guard';
+import { LoginDto } from 'src/dto/login-user.dto';
 
-@Controller('auth')
-export class AuthController {
-    constructor(private authService: AuthService) {}
-
-  @Post()
-  create(@Req() request: Request):string{
-  return this.authService.create()
+interface IRequest extends Request{
+  user:{
+    id:string;
   }
+}
+@Controller({ path: 'auth', version: '1' })
+export class AuthController {
+  constructor(private authService: AuthService) {}
+
+ @Post('register')
+  async create(@Body() createUserDto: CreateUserDto) {
+    return this.authService.create(createUserDto);
+  }
+
+    @Post('login')
+    async login(@Body() loginDto: LoginDto) {
+
+      return this.authService.login(loginDto)
+    }
+
 }

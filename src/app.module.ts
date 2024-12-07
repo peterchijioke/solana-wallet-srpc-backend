@@ -6,10 +6,11 @@ import { UsersService } from './users/users.service';
 import { AuthController } from './auth/auth.controller';
 import { DatabaseModule } from './database/database.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserController } from './users/users.controller';
 
 @Module({
   imports: [DatabaseModule,AuthModule, UsersModule],
-  controllers: [AuthController],
+  controllers: [AuthController, UserController],
   providers: [AuthService,UsersService],
 })
 export class AppModule {}
