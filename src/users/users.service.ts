@@ -76,7 +76,7 @@ const {password,...rest}=user
       Object.assign(user, updateUserDto);
 
       // Save the updated user
-      const updatedUser = await this.userRepository.save(user);
+      const {password,...updatedUser} = await this.userRepository.save(user);
 
       return {
         statusCode: HttpStatus.OK,
