@@ -20,10 +20,10 @@ export class AuthService {
 
   async create(createUserDto: CreateUserDto): Promise<any> {
     try {
-      const { password, ...userData } = createUserDto;
+      const { password:passkey, ...userData } = createUserDto;
 
       // Hash the password
-      const hashedPassword = await argon.hash(password);
+      const hashedPassword = await argon.hash(passkey);
 
       // Create the user entity
       const user = this.userRepository.create({
@@ -33,11 +33,11 @@ export class AuthService {
 
       // Save the user
       const newUser = await this.userRepository.save(user);
-
+      const {password,...rest}:User=newUser
       return {
         statusCode: HttpStatus.CREATED,
         message: 'User created successfully',
-        data: newUser,
+        data: rest,
       };
     } catch (error) {
       throw new HttpException(
